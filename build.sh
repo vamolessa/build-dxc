@@ -34,4 +34,14 @@ cmake \
 
 make
 
-cp bin/dxc ../../dxc-$OS-$ARCH
+# Zip build output
+
+cd ../..
+mkdir dxc-$OS-$ARCH
+
+echo $COMMIT > dxc-$OS-$ARCH/commit.txt
+cp dxc/build/bin/dxc dxc-$OS-$ARCH/dxc
+
+rm -f dxc-$OS-$ARCH-$BUILD_DATE.zip
+zip -9 -r dxc-$OS-$ARCH-$BUILD_DATE.zip dxc-$OS-$ARCH || echo "could not zip artifacts"
+cp -f dxc-$OS-$ARCH-$BUILD_DATE.zip .. || echo "could not copy zip artifacts to root dir"
