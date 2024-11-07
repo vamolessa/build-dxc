@@ -40,6 +40,10 @@ cp -f dxc/include/dxc/dxcisense.h         dxc-$OS-$ARCH/include
 
 cp -f dxc/external/DirectX-Headers/include/directx/d3d12shader.h dxc-$OS-$ARCH/include
 
-#rm -f dxc-$OS-$ARCH-$BUILD_DATE.zip
-#zip -9 -r dxc-$OS-$ARCH-$BUILD_DATE.zip dxc-$OS-$ARCH || echo "could not zip artifacts"
-7z a -y -mx=9 dxc-$OS-$ARCH-$BUILD_DATE.zip dxc-$OS-$ARCH
+rm -f dxc-$OS-$ARCH-$BUILD_DATE.zip
+
+if [ "$OS" == "win" ]; then
+  7z a -y -mx=9 dxc-$OS-$ARCH-$BUILD_DATE.zip dxc-$OS-$ARCH
+else
+  zip -9 -r dxc-$OS-$ARCH-$BUILD_DATE.zip dxc-$OS-$ARCH
+fi
