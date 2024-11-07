@@ -4,7 +4,7 @@ ARCH=$2
 git clone --recurse-submodules https://github.com/microsoft/DirectXShaderCompiler dxc
 
 cmake -S dxc -B dxc-build -C ../cmake/caches/PredefinedParams.cmake -D DCMAKE_BUILD_TYPE=Release
-cmake --build dxc-build --config Release
+cmake --build dxc-build --config Release --target dxc
 
 mkdir dxc-$OS-$ARCH
 
@@ -29,15 +29,7 @@ cp -f dxc/include/dxc/dxcapi.h            dxc-$OS-$ARCH/include
 cp -f dxc/include/dxc/dxcerrors.h         dxc-$OS-$ARCH/include
 cp -f dxc/include/dxc/dxcisense.h         dxc-$OS-$ARCH/include
 
-echo "========================================================"
-echo "======================================================== find d3d12shader.h"
-echo "========================================================"
-
-find . -type f -name 'd3d12shader.h'
-
-echo "========================================================"
-echo "========================================================"
-echo "========================================================"
+cp -f dxc/external/DirectX-Headers/include/directx/d3d12shader.h dxc-$OS-$ARCH/include
 
 rm -f dxc-$OS-$ARCH-$BUILD_DATE.zip
 zip -9 -r dxc-$OS-$ARCH-$BUILD_DATE.zip dxc-$OS-$ARCH || echo "could not zip artifacts"
