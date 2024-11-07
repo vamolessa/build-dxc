@@ -24,27 +24,16 @@ if [ "$OS" == "win" ]; then
   OUT_DIR="$OUT_DIR/Release"
 fi
 
-echo "======================================================="
-echo "======================================================="
-echo "======================================================="
-
-find . -type f -name 'dxcompiler.dll'
-find . -type f -name 'dxil.dll'
-
-echo "======================================================="
-echo "======================================================="
-echo "======================================================="
-
 cp -f "$OUT_DIR/bin/dxc.exe"               dxc-$OS-$ARCH/bin
 cp -f "$OUT_DIR/bin/dxc"                   dxc-$OS-$ARCH/bin
 
-cp -f "$OUT_DIR/lib/dxcompiler.dll"        dxc-$OS-$ARCH/lib
+cp -f "$OUT_DIR/bin/dxcompiler.dll"        dxc-$OS-$ARCH/lib
 cp -f "$OUT_DIR/lib/dxcompiler.lib"        dxc-$OS-$ARCH/lib
 cp -f "$OUT_DIR/lib/libdxcompiler.dylib"   dxc-$OS-$ARCH/lib
 cp -f "$OUT_DIR/lib/libdxcompiler.so"      dxc-$OS-$ARCH/lib
 cp -f "$OUT_DIR/lib/libdxcompiler.a"       dxc-$OS-$ARCH/lib
 
-cp -f "$OUT_DIR/lib/dxil.dll"              dxc-$OS-$ARCH/lib
+cp -f "$OUT_DIR/bin/dxil.dll"              dxc-$OS-$ARCH/lib
 cp -f "$OUT_DIR/lib/dxil.lib"              dxc-$OS-$ARCH/lib
 cp -f "$OUT_DIR/lib/libdxil.dylib"         dxc-$OS-$ARCH/lib
 cp -f "$OUT_DIR/lib/libdxil.so"            dxc-$OS-$ARCH/lib
