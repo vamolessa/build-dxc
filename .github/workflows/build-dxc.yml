@@ -33,6 +33,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: milliewalky/setup-7-zip@v1
+
       - name: Run Build Script
         id: build
         shell: bash
@@ -61,6 +63,8 @@ jobs:
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: latest-stable
+
+      - uses: milliewalky/setup-7-zip@v1
 
       - name: Checkout
         uses: actions/checkout@v4
