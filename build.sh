@@ -42,6 +42,7 @@ cp -f "$OUT_DIR/lib/libdxil.a"             dxc-$OS-$ARCH/lib
 cp -f "dxc/include/dxc/dxcapi.h"           dxc-$OS-$ARCH/include
 cp -f "dxc/include/dxc/dxcerrors.h"        dxc-$OS-$ARCH/include
 cp -f "dxc/include/dxc/dxcisense.h"        dxc-$OS-$ARCH/include
+cp -f "dxc/include/dxc/WinAdapter.h"       dxc-$OS-$ARCH/include
 
 cp -f dxc/external/DirectX-Headers/include/directx/d3d12shader.h dxc-$OS-$ARCH/include
 rm -f dxc-$OS-$ARCH-$BUILD_DATE.zip
