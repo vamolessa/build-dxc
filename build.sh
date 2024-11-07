@@ -4,8 +4,8 @@ ARCH=$2
 git clone --recurse-submodules https://github.com/microsoft/DirectXShaderCompiler dxc
 
 cmake -S dxc -B dxc-build -C ../cmake/caches/PredefinedParams.cmake -D DCMAKE_BUILD_TYPE=Release
-#cmake --build dxc-build --config Release --target ""
-make
+cmake --build dxc-build --config Release --target help
+#make
 
 mkdir dxc-$OS-$ARCH
 
