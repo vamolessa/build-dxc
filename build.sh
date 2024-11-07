@@ -2,28 +2,34 @@ OS=$1
 ARCH=$2
 
 git clone --recurse-submodules https://github.com/microsoft/DirectXShaderCompiler dxc
+pushd dxc
+mkdir build
+pushd build
 
-cmake -S dxc -B dxc-build -C ../cmake/caches/PredefinedParams.cmake -D DCMAKE_BUILD_TYPE=Release
+cmake -S .. -B . -C ../cmake/caches/PredefinedParams.cmake -D DCMAKE_BUILD_TYPE=Release
 make
+
+popd
+popd
 
 mkdir dxc-$OS-$ARCH
 
 echo $COMMIT > dxc-$OS-$ARCH/commit.txt
 
-cp -f dxc-build/bin/dxc.exe               dxc-$OS-$ARCH/bin
-cp -f dxc-build/bin/dxc                   dxc-$OS-$ARCH/bin
+cp -f dxc/build/bin/dxc.exe               dxc-$OS-$ARCH/bin
+cp -f dxc/build/bin/dxc                   dxc-$OS-$ARCH/bin
 
-cp -f dxc-build/lib/dxcompiler.dll        dxc-$OS-$ARCH/lib
-cp -f dxc-build/lib/dxcompiler.lib        dxc-$OS-$ARCH/lib
-cp -f dxc-build/lib/libdxcompiler.dylib   dxc-$OS-$ARCH/lib
-cp -f dxc-build/lib/libdxcompiler.so      dxc-$OS-$ARCH/lib
-cp -f dxc-build/lib/libdxcompiler.a       dxc-$OS-$ARCH/lib
+cp -f dxc/build/lib/dxcompiler.dll        dxc-$OS-$ARCH/lib
+cp -f dxc/build/lib/dxcompiler.lib        dxc-$OS-$ARCH/lib
+cp -f dxc/build/lib/libdxcompiler.dylib   dxc-$OS-$ARCH/lib
+cp -f dxc/build/lib/libdxcompiler.so      dxc-$OS-$ARCH/lib
+cp -f dxc/build/lib/libdxcompiler.a       dxc-$OS-$ARCH/lib
 
-cp -f dxc-build/lib/dxil.dll              dxc-$OS-$ARCH/lib
-cp -f dxc-build/lib/dxil.lib              dxc-$OS-$ARCH/lib
-cp -f dxc-build/lib/libdxil.dylib         dxc-$OS-$ARCH/lib
-cp -f dxc-build/lib/libdxil.so            dxc-$OS-$ARCH/lib
-cp -f dxc-build/lib/libdxil.a             dxc-$OS-$ARCH/lib
+cp -f dxc/build/lib/dxil.dll              dxc-$OS-$ARCH/lib
+cp -f dxc/build/lib/dxil.lib              dxc-$OS-$ARCH/lib
+cp -f dxc/build/lib/libdxil.dylib         dxc-$OS-$ARCH/lib
+cp -f dxc/build/lib/libdxil.so            dxc-$OS-$ARCH/lib
+cp -f dxc/build/lib/libdxil.a             dxc-$OS-$ARCH/lib
 
 cp -f dxc/include/dxc/dxcapi.h            dxc-$OS-$ARCH/include
 cp -f dxc/include/dxc/dxcerrors.h         dxc-$OS-$ARCH/include
