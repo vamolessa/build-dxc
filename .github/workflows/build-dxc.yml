@@ -19,7 +19,8 @@ jobs:
           echo COMMIT=`git ls-remote https://github.com/microsoft/DirectXShaderCompiler HEAD | awk '{ print $1 }'` >> ${GITHUB_OUTPUT}
           echo BUILD_DATE=`date +'%Y-%m-%d'` >> ${GITHUB_OUTPUT}
 
-  build-windows:
+  build-win:
+    if: false
     runs-on: windows-2022
     needs: info
     strategy:
@@ -80,7 +81,7 @@ jobs:
 
   release:
     runs-on: ubuntu-24.04
-    needs: [info, build-mac]
+    needs: [info, build-mac, build-win]
     permissions:
       contents: write
     env:
