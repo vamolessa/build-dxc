@@ -13,6 +13,9 @@ popd
 popd
 
 mkdir dxc-$OS-$ARCH
+mkdir dxc-$OS-$ARCH/bin
+mkdir dxc-$OS-$ARCH/lib
+mkdir dxc-$OS-$ARCH/include
 
 echo $COMMIT > dxc-$OS-$ARCH/commit.txt
 
