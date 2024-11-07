@@ -19,6 +19,33 @@ jobs:
           echo COMMIT=`git ls-remote https://github.com/microsoft/DirectXShaderCompiler HEAD | awk '{ print $1 }'` >> ${GITHUB_OUTPUT}
           echo BUILD_DATE=`date +'%Y-%m-%d'` >> ${GITHUB_OUTPUT}
 
+  build-windows:
+    runs-on: windows-2022
+    needs: info
+    strategy:
+      matrix:
+        arch: [x64, arm64]
+    env:
+      COMMIT: ${{ needs.info.outputs.COMMIT }}
+      BUILD_DATE: ${{ needs.info.outputs.BUILD_DATE }}
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Build Script
+        id: build
+        shell: bash
+        run: bash build.sh win ${{ matrix.arch }}
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dxc-win-${{ matrix.arch }}-${{ needs.info.outputs.BUILD_DATE }}
+          path: dxc-win-${{ matrix.arch }}-${{ needs.info.outputs.BUILD_DATE }}.zip
+          if-no-files-found: error
+          compression-level: 0
+
   build-mac:
     runs-on: macos-latest
     needs: info
