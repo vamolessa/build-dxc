@@ -24,7 +24,7 @@ jobs:
     needs: info
     strategy:
       matrix:
-        arch: [x64, arm64]
+        arch: [x64]
     env:
       COMMIT: ${{ needs.info.outputs.COMMIT }}
       BUILD_DATE: ${{ needs.info.outputs.BUILD_DATE }}
@@ -83,7 +83,7 @@ jobs:
     needs: info
     strategy:
       matrix:
-        arch: [x64, arm64]
+        arch: [x64]
     env:
       COMMIT: ${{ needs.info.outputs.COMMIT }}
       BUILD_DATE: ${{ needs.info.outputs.BUILD_DATE }}
