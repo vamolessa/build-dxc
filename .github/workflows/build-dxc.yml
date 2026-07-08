@@ -41,8 +41,8 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: dxc-win-${{ matrix.arch }}-${{ needs.info.outputs.BUILD_DATE }}
-          path: dxc-win-${{ matrix.arch }}-${{ needs.info.outputs.BUILD_DATE }}.zip
+          name: dxc-win-${{ matrix.arch }}
+          path: dxc-win-${{ matrix.arch }}.zip
           if-no-files-found: error
           compression-level: 0
 
@@ -73,8 +73,8 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: dxc-mac-${{ matrix.arch }}-${{ needs.info.outputs.BUILD_DATE }}
-          path: dxc-mac-${{ matrix.arch }}-${{ needs.info.outputs.BUILD_DATE }}.zip
+          name: dxc-mac-${{ matrix.arch }}
+          path: dxc-mac-${{ matrix.arch }}.zip
           if-no-files-found: error
           compression-level: 0
 
@@ -100,8 +100,8 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: dxc-linux-${{ matrix.arch }}-${{ needs.info.outputs.BUILD_DATE }}
-          path: dxc-linux-${{ matrix.arch }}-${{ needs.info.outputs.BUILD_DATE }}.zip
+          name: dxc-linux-${{ matrix.arch }}
+          path: dxc-linux-${{ matrix.arch }}.zip
           if-no-files-found: error
           compression-level: 0
 
@@ -121,8 +121,8 @@ jobs:
       - name: Get Artifacts From Build Steps
         uses: actions/download-artifact@v4
         with:
-          pattern: dxc-*-*-${{ needs.info.outputs.BUILD_DATE }}
+          pattern: dxc-*-*
           merge-multiple: true
 
       - name: Upload Artifacts to GitHub Release
-        run: gh release upload '${{ needs.info.outputs.BUILD_DATE }}' dxc-*-*-${{ needs.info.outputs.BUILD_DATE }}.zip -R "${GITHUB_REPOSITORY}"
+        run: gh release upload '${{ needs.info.outputs.BUILD_DATE }}' dxc-*-*.zip -R "${GITHUB_REPOSITORY}"
