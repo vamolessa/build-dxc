@@ -48,7 +48,7 @@ cp -f dxc/external/DirectX-Headers/include/directx/d3d12shader.h dxc-$OS-$ARCH/i
 rm -f dxc-$OS-$ARCH-$BUILD_DATE.zip
 
 if [ "$OS" == "win" ]; then
-  7z a -y -mx=9 dxc-$OS-$ARCH-$BUILD_DATE.zip dxc-$OS-$ARCH
+  7z a -y -mx=9 dxc-$OS-$ARCH.zip dxc-$OS-$ARCH
 else
-  zip -9 -r dxc-$OS-$ARCH-$BUILD_DATE.zip dxc-$OS-$ARCH
+  zip -9 -r dxc-$OS-$ARCH.zip dxc-$OS-$ARCH
 fi
